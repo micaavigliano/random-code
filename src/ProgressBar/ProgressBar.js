@@ -1,22 +1,27 @@
 import { useEffect, useState } from "react";
 
 export default function ProgressBar({ percent }) {
-  const [count, setCount] = useState(0);
-  const [per, setPer] = useState(percent);
+  let [count, setCount] = useState(0);
+  let [decre, setDecre] = useState(percent);
 
   const decrement = () => {
-    setPer(per - 1);
-    console.log("decrement", per);
+    setDecre(decre -= 1);
+    console.log("decrement", decre);
   };
+
+  const credentials = () => {
+    return console.log("hola, soy una credencial");
+  }
 
   useEffect(() => {
     const interval = setInterval((percent) => {
       decrement();
       setCount((oldValue) => {
-        const newValue = oldValue + 1;
+        let newValue = oldValue + 1;
         console.log("valor", newValue);
-        if (newValue === percent) {
+        if (decre === 0) {
           clearInterval(interval);
+          credentials();
         }
         return newValue;
       });
@@ -26,11 +31,12 @@ export default function ProgressBar({ percent }) {
   return (
     <div>
       <h1>hola 1 dfdf</h1>
-      {percent}
       <progress max={percent} value={count} />
-      <p>
-        {count} - {percent}
-      </p>
+      <section>
+        <p>porcentaje: {percent}</p>
+        <p>contador: {count}</p>
+        <p>decremento: {decre}</p>
+      </section>
     </div>
   );
 }
