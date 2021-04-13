@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 
 import Modal from "./Modal/Modal";
 import ProgressBar from "./ProgressBar/ProgressBar";
@@ -6,12 +6,6 @@ import "./index.css";
 
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const min = 10;
-  const max = 60;
-  const a = useMemo(
-    () => Math.floor(Math.random() * (max - min + 1)) + min,
-    []
-  );
 
   return (
     <div className="App">
@@ -27,7 +21,7 @@ function App() {
           </Modal.Footer>
         </Modal>
       )}
-      <ProgressBar percent={a} />
+      <ProgressBar />
     </div>
   );
 }
