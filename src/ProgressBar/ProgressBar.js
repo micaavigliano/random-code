@@ -4,14 +4,15 @@ import './ProgressBar.css'
 const ProgressBar = () => {
   const [count, setCount] = useState(0)
   const [seconds, setSeconds] = useState()
-  const min = 10;
-  const max = 60;
-  const minutes = (Math.floor(Math.random() * (max - min + 1)) + min);
+  const min = 5;
+  const max = 6;
+  const api = (Math.floor(Math.random() * (max - min + 1)) + min);
 
   useEffect(() => {
-    const seconds = minutes * 60; // de minutos a segundos
+    // const seconds = minutes * 60; // de minutos a segundos
+    const seconds = api
     setSeconds(seconds)
-    console.log({ minutes, seconds })
+    console.log({ minutes: api, seconds })
 
 
     const interval = setInterval(() => {
@@ -27,6 +28,8 @@ const ProgressBar = () => {
         return newValue;
       });
     }, 1000);
+
+    return () => clearInterval(interval)
   }, []);
 
   return (
